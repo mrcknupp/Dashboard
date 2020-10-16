@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog noDataText="{i18n>txtNenhumVendedor}" title="{i18n>txtSelVendedor}" search="onDialogSearch" confirm="onValueConfirm"
+		items="{/HfolhaSet}">
+		<StandardListItem title="{CodVendedor}" iconDensityAware="false" iconInset="false" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

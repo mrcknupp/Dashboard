@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog noDataText="{i18n>txtNenhumRegional}" title="{i18n>txtSelRegional}" search="onDialogSearch" confirm="onValueConfirm"
+		items="{/BranchSet}">
+		<StandardListItem title="{Regional}" description="{DescRegional}" iconDensityAware="false" iconInset="false" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

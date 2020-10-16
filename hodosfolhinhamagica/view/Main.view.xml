@@ -1,0 +1,708 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:lab="hodosovp.FolhaMagica.controls" xmlns:t="sap.ui.table"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:c="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data" xmlns:mi="sap.suite.ui.microchart"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:smartList="sap.ui.comp.smartlist" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="hodosovp.FolhaMagica.controller.Main" displayBlock="true">
+	<App id="idAppControl">
+		<sap.m.semantic:FullscreenPage xmlns:sap.m.semantic="sap.m.semantic" enableScrolling="false" title="{i18n>pagetitle}"
+			id="mainPageFolhaMagica" showNavButton="false">
+			<fb:FilterBar id="idFilter" showFilterConfiguration="false" showRestoreButton="false" showGoOnFB="false" useToolbar="false">
+				<fb:filterItems>
+					<fb:FilterItem name="field1" label="{i18n>Pais}">
+						<fb:control>
+							<Input id="fdPais" fieldWidth="20%" type="Text" value="{filter>/Pais}" showValueHelp="true" enabled="true" valueHelpRequest="onSearch"
+							       liveChange="onChangeFilter"/>
+						</fb:control>
+					</fb:FilterItem>					
+					<fb:FilterItem name="field2" label="{i18n>Geral}">
+						<fb:control>
+							<Input id="fdGeral" fieldWidth="20%" type="Text" value="{filter>/Geral}" showValueHelp="true" enabled="true" valueHelpRequest="onSearch"
+							       liveChange="onChangeFilter"/>
+						</fb:control>
+					</fb:FilterItem>					
+					<fb:FilterItem name="field3" label="{i18n>Regional}">
+						<fb:control>
+							<Input id="fdRegional" fieldWidth="20%" type="Text" value="{filter>/Regional}" showValueHelp="true" enabled="true" valueHelpRequest="onSearch"
+							       liveChange="onChangeFilter"/>
+						</fb:control>
+					</fb:FilterItem>
+					<fb:FilterItem name="field4" label="{i18n>CodLoja}">
+						<fb:control>
+							<Input id="fdCodLoja" fieldWidth="20%" type="Text" value="{filter>/CodLoja}" showValueHelp="true" enabled="true" valueHelpRequest="onSearch"
+							       liveChange="onChangeFilter"/>
+						</fb:control>
+					</fb:FilterItem>
+					<fb:FilterItem name="field5" label="{i18n>CodVendedor}">
+						<fb:control>
+							<Input id="fdCodVendedor" fieldWidth="20%" showValueHelp="true"  type="Text" enabled="true" valueHelpRequest="onSearch"
+							       liveChange="onChangeFilter"/>
+						</fb:control>
+					</fb:FilterItem>
+					<fb:FilterItem name="field6" label="{i18n>Ano}">
+						<fb:control>
+							<Input id="fdAno" fieldWidth="20%" type="Text" value="{filter>/Ano}" showValueHelp="true" enabled="true" valueHelpRequest="onSearch"
+							       liveChange="onChangeFilter"/>
+						</fb:control>
+					</fb:FilterItem>
+					<fb:FilterItem name="field7" label="{i18n>Mes}">
+						<fb:control>
+							<Input id="fdMes" fieldWidth="20%" type="Text" value="{filter>/Mes}" showValueHelp="true" enabled="true" valueHelpRequest="onSearch"
+							       liveChange="onChangeFilter"/>
+						</fb:control>
+					</fb:FilterItem>					
+					<fb:FilterItem name="field8" label="{i18n>Semana}">
+						<fb:control>
+							<Input id="fdSemana" fieldWidth="20%" type="Text" value="{filter>/Semana}" showValueHelp="true" enabled="true" valueHelpRequest="onSearch"
+							       liveChange="onChangeFilter"/>
+						</fb:control>
+					</fb:FilterItem>
+					
+				</fb:filterItems>
+			</fb:FilterBar>
+			<l:FixFlex fixContentSize="450px">
+				<l:fixContent>
+					<ScrollContainer id="idScrollContainer" height="100%" vertical="true">
+						<Panel id="idVendedor" backgroundDesign="Solid">
+							<headerToolbar>
+								<!--TAB Vendedor-->
+								<Toolbar >
+									<Label id="idtit0espaco0" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit0espaco1" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit0espaco2" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit0espaco3" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit0espaco4" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit0espaco5" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit0espaco6" class="sapUiSmallMarginBegin"/>
+									<Title id="idDBasico" text="{i18n>dadosbasicos}" textAlign="Center" class="Subtitle"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<HBox fitContainer="true" alignContent="Center" alignItems="Center" class="sapUiMediumMarginTop" height="30px">
+									<HBox alignItems="Center" width="90%">
+										<Text id="IdNome" class="sapUiMediumMarginEnd"/>
+										<Text id="IdCodVendedor" class="sapUiMediumMarginEnd"/>
+										<Text id="IdSemana" class="sapUiMediumMarginEnd"/>
+									</HBox>
+									<HBox width="10%">
+										<Image src="{= ${param>/namespace} + '/images/hodos.png'}" densityAware="false" width="5em" class="sapUiLargeMarginEnd"/>
+									</HBox>
+								</HBox>
+							</content>
+						</Panel>
+						<Panel id="idProEvo" backgroundDesign="Solid">
+							<headerToolbar>
+								<!--TAB EVOLUÇÃO x PROJECAO-->
+								<Toolbar >
+									<Label id="idtit1espaco0" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit1espaco1" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit1espaco2" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit1espaco3" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit1espaco4" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit1espaco5" class="sapUiLargeMarginBegin"/>
+									<Title text="{i18n>titPlacar}" textAlign="Center" class="sapUiSmallMarginBegin Subtitle"/>
+								</Toolbar>
+							</headerToolbar>
+							<HBox alignContent="Start" alignItems="Start" class="sapUiTinyMarginTop">
+								<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+								<t:Table id="tEvol" selectionMode="None" width="33.7rem" class="sapUiMediumMarginBegin tPreto" visibleRowCount="8" enableSelectAll="false"
+									rows="{path: '/MSEvolucaoSet'}" threshold="8" enableBusyIndicator="false" ariaLabelledBy="title">
+									<!--<t:noData>-->
+									<!--	<BusyIndicator class="sapUiMediumMargin" />-->
+									<!--</t:noData>-->
+									<t:title >
+										<HBox alignContent="Center" alignItems="Center">
+											<Title text="{i18n>EvolSemana}" titleStyle="H4" class="tPreto"/>
+										</HBox>
+									</t:title>
+									<t:columns>
+										<t:Column autoResizable="true" width="4.5rem" hAlign="Center">
+											<Label text="{i18n>Semana}" class="tPreto"/>
+											<t:template>
+												<Text text="{Semana}" wrapping="false" class="tPreto"/>
+											</t:template>
+										</t:Column>
+										<t:Column autoResizable="true" width="5rem" hAlign="Center">
+											<Label text="{i18n>Venda}" class="tPreto"/>
+											<t:template>
+												<Text text="{path: 'Venda', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+											</t:template>
+										</t:Column>
+										<t:Column autoResizable="true" width="3.5rem" hAlign="Center">
+											<Label text="{i18n>MediaTm}" class="tPreto"/>
+											<t:template>
+												<Text text="{path: 'MediaTm', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+											</t:template>
+										</t:Column>
+										<t:Column autoResizable="true" width="6rem" hAlign="Center">
+											<Label text="{i18n>QtdCupons}" class="tPreto"/>
+											<t:template>
+												<Text text="{QtdCupons}" wrapping="false" class="tPreto"/>
+											</t:template>
+										</t:Column>
+										<t:Column autoResizable="true" width="6.2rem" hAlign="Center">
+											<Label text="{i18n>MediaQtdItens}" class="tPreto"/>
+											<t:template>
+												<Text text="{path: 'MediaQtdItens', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 1}}" wrapping="false" class="tPreto"/>
+											</t:template>
+										</t:Column>
+										<t:Column autoResizable="true" width="3.5rem" hAlign="Center">
+											<Label text="{i18n>QtdItens}" class="tPreto"/>
+											<t:template>
+												<Text text="{QtdItens}" wrapping="false" class="tPreto"/>
+											</t:template>
+										</t:Column>
+										<t:Column autoResizable="true" width="4.7rem" hAlign="Center">
+											<Label text="{i18n>Paridade}" class="tPreto"/>
+											<t:template>
+												<Text text="{path: 'Paridade', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+								<VBox fitContainer="true" class="sapUiLargeMarginBegin">
+									<t:Table id="tProjReal" selectionMode="None" width="36.9rem" visibleRowCount="1" enableSelectAll="false" rows="{path: '/MSProjecaoSet'}"
+										threshold="1" enableBusyIndicator="false" ariaLabelledBy="title">
+										<!--<t:noData>-->
+										<!--	<BusyIndicator class="sapUiMediumMargin"/>-->
+										<!--</t:noData>-->
+										<t:title >
+											<HBox alignContent="Center" alignItems="Center">
+												<Title text="{i18n>ProjReal}" titleStyle="H4" class="tPreto"/>
+											</HBox>
+										</t:title>
+										<t:columns>
+											<t:Column autoResizable="true" width="3rem" hAlign="Center">
+												<Label text="{i18n>Dias}" class="tPreto"/>
+												<t:template>
+													<Text text="{RDias}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="5rem" hAlign="Center">
+												<Label text="{i18n>Venda}" class="tPreto"/>
+												<t:template>
+													<Text text="{path: 'RVenda', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="6.5rem" hAlign="Center">
+												<Label text="{i18n>VendaDia}" class="tPreto"/>
+												<t:template>
+													<Text text="{path: 'RVendaDia', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="3.6rem" hAlign="Center">
+												<Label text="{i18n>Tm}" class="tPreto"/>
+												<t:template>
+													<Text text="{path: 'RTm', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="6rem" hAlign="Center">
+												<Label text="{i18n>CuponsDia}" class="tPreto"/>
+												<t:template>
+													<Text text="{RCuponsDia}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+										</t:columns>
+									</t:Table>
+									<t:Table id="tProjSimu" selectionMode="None" width="36.9rem" class="sapUiSmallMarginTop" visibleRowCount="1" enableSelectAll="false"
+										rows="{path: '/MSProjecaoSet'}" threshold="1" enableBusyIndicator="false" ariaLabelledBy="title">
+										<!--<t:noData>-->
+										<!--	<BusyIndicator class="sapUiMediumMargin"/>-->
+										<!--</t:noData>-->
+										<t:title >
+											<HBox alignContent="Center" alignItems="Center">
+												<Title text="{i18n>ProjSimu}" titleStyle="H4" class="tPreto"/>
+											</HBox>
+										</t:title>
+										<t:columns>
+											<t:Column autoResizable="true" width="3rem" hAlign="Center">
+												<Label text="{i18n>Dias}" class="tPreto"/>
+												<t:template>
+													<Text text="{PDias}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="5rem" hAlign="Center">
+												<Label text="{i18n>Venda}" class="tPreto"/>
+												<t:template>
+													<Text text="{path: 'PVenda', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="6.5rem" hAlign="Center">
+												<Label text="{i18n>VendaDia}" class="tPreto"/>
+												<t:template>
+													<Text text="{path: 'PVendaDia', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="3.6rem" hAlign="Center">
+												<Label text="{i18n>Tm}" class="tPreto"/>
+												<t:template>
+													<Text text="{path: 'PTm', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="6rem" hAlign="Center">
+												<Label text="{i18n>CuponsDia}" class="tPreto"/>
+												<t:template>
+													<Text text="{PCuponsDia}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="5.5rem" hAlign="Center">
+												<Label text="{i18n>Faixa}" class="tPreto"/>
+												<t:template>
+													<Text text="{PFaixa}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="7rem" hAlign="Center">
+												<Label text="{i18n>Valor}" class="tPreto"/>
+												<t:template>
+													<Text text="{path: 'PValor', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+										</t:columns>
+									</t:Table>
+									<t:Table id="tProjMais" selectionMode="None" width="36.9rem" class="sapUiSmallMarginTop" visibleRowCount="1" enableSelectAll="false"
+										rows="{path: '/MSProjecaoSet'}" threshold="1" enableBusyIndicator="false" ariaLabelledBy="title">
+										<!--<t:noData>-->
+										<!--	<BusyIndicator class="sapUiMediumMargin"/>-->
+										<!--</t:noData>-->
+										<t:title >
+											<HBox alignContent="Center" alignItems="Center">
+												<Title text="{i18n>ProjMais}" titleStyle="H3" class="IPreto"/>
+												<c:Icon src="sap-icon://simple-payment" alt="simple-payment" class="sapUiSmallMarginBegin IPreto"/>
+											</HBox>
+										</t:title>
+										<t:columns>
+											<t:Column autoResizable="true" width="3rem" hAlign="Center">
+												<Label text="{i18n>Dias}" class="tPreto"/>
+												<t:template>
+													<Text text="{MDias}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="5rem" hAlign="Center">
+												<Label text="{i18n>Venda}" class="tPreto"/>
+												<t:template>
+													<Text text="{path: 'MVenda', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="6.5rem" hAlign="Center">
+												<Label text="{i18n>VendaDia}" class="tPreto"/>
+												<t:template>
+													<Text text="{path: 'MVendaDia', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="3.6rem" hAlign="Center">
+												<Label text="{i18n>Tm}" class="tPreto"/>
+												<t:template>
+													<Text text="{path: 'MTm', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="6rem" hAlign="Center">
+												<Label text="{i18n>CuponsDia}" class="tPreto"/>
+												<t:template>
+													<Text text="{MCuponsDia}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="5.5rem" hAlign="Center">
+												<Label text="{i18n>Faixa}" class="tPreto"/>
+												<t:template>
+													<Text text="{MFaixa}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+											<t:Column autoResizable="true" width="7rem" hAlign="Center">
+												<Label text="{i18n>Valor}" class="tPreto"/>
+												<t:template>
+													<Text text="{path: 'MValor', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" class="tPreto"/>
+												</t:template>
+											</t:Column>
+										</t:columns>
+									</t:Table>
+								</VBox>
+							</HBox>
+							<MessageStrip id="idMEvoProj" class="sapUiMediumMarginBottom tPreto" showIcon="true"/>
+						</Panel>
+						<Panel id="idRotEnc" backgroundDesign="Solid">
+							<headerToolbar>
+								<!--TAB ROTEIRO x ENCANTAMENTO-->
+								<Toolbar class="tLaranjaColor">
+									<Label id="idtit2espaco0" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit2espaco1" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit2espaco2" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit2espaco3" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit2espaco4" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit2espaco5" class="sapUiLargemMarginBegin"/>
+									<Label id="idtit2espaco6" class="sapUiLargemMarginBegin"/>
+									<Label id="idtit2espaco7" class="sapUiTinyMarginBegin"/>
+									<Title text="{i18n>titCumpRoteiro}" textAlign="Center" class="sapUiLargemMarginBegin Subtitle"/>
+								</Toolbar>
+							</headerToolbar>
+							<VBox alignContent="Center" alignItems="Center" width="95%" height="40%">
+								<List id="idList1">
+									<CustomListItem>
+										<HBox alignContent="Center" alignItems="Center">
+											<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+											<Label text="{i18n>mainPage.titleRoteiro}" class="sapUiTinyMarginBegin Topicos tPreto" design="Bold"/>
+											<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+											<Label id="idespaco" class="sapUiSmallMarginBegin Topicos" design="Bold"/>
+											<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+											<Label text="{i18n>mainPage.procedimento}" class="sapUiTinyMarginBegin Topicos tPreto" design="Bold"/>
+											<Label id="idPerProced" class="sapUiTinyMarginBegin abc tPreto" design="Bold"/>
+											<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+											<Label id="idespaco0" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+											<Label id="idespaco1" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+											<Label id="idespaco2" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+											<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+											<Label text="{i18n>mainPage.encantamento}" class="Topicos tPreto" design="Bold"/>
+											<Label id="idPerEncant" class="sapUiTinyMarginBegin abc tPreto" design="Bold"/>
+											<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+											<Label id="idespaco3" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+											<Label id="idespaco4" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+											<Label id="idespaco5" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+											<Label id="idespaco6" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+											<Label id="idespaco7" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+											<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+											<Label text="{i18n>mainPage.caracteristica}" class="Topicos tPreto" design="Bold"/>
+											<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+											<Label id="idespaco8" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+											<!--<Label id="idespaco9" class="sapUiLargeMarginBegin Topicos" design="Bold"/>-->
+											<!--<Label id="idespaco10" class="sapUiLargeMarginBegin Topicos" design="Bold"/>-->
+										</HBox>
+									</CustomListItem>
+								</List>
+								<List id="idList2">
+									<CustomListItem>
+										<HBox alignContent="Center" alignItems="Center">
+											<!--Bloco 1-->
+											<VBox alignContent="Center" alignItems="Center" class="sapUiSmallMarginBottom">
+												<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+												<Label id="lCumpRot" text="{path: '/RoteiroFuncSet/CumpRot'}" class="ABC tPreto"/>
+												<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+											</VBox>
+											<!--Bloco 2-->
+											<HBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBegin">
+												<VBox alignContent="Center" alignItems="Center">
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label text="{i18n>mainPage.chartTitle.quando}" class="tPreto" design="Bold"/>
+													<Label text="{i18n>mainPage.chartTitle.vendeu}" class="tPreto" design="Bold"/>
+													<Label text="{i18n>mainPage.chartTitle.quando}" class="tPreto sapUiLargeMarginTop" design="Bold"/>
+													<Label text="{i18n>mainPage.chartTitle.naoVendeu}" class="tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+												</VBox>
+												<VBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBottom">
+													<Label id="rmvazio0" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="rmRotProced" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="rmvazio1" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="rmRotNProced" class="sapUiTinyMarginBegin sapUiLargeMarginTop Topicos tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+												</VBox>
+											</HBox>
+											<!--Bloco 3-->
+											<HBox alignContent="Start" alignItems="Center" class="sapUiLargeMarginBegin">
+												<VBox alignContent="Center" alignItems="Center">
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label text="{i18n>mainPage.chartTitle.quando}" class="tPreto" design="Bold"/>
+													<Label text="{i18n>mainPage.chartTitle.vendeu}" class="tPreto" design="Bold"/>
+													<Label text="{i18n>mainPage.chartTitle.quando}" class="tPreto sapUiLargeMarginTop" design="Bold"/>
+													<Label text="{i18n>mainPage.chartTitle.naoVendeu}" class="tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+												</VBox>
+												<VBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBottom">
+													<Label id="rmvazio2" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="rmRotEncant" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="rmvazio3" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="rmRotNEncant" class="sapUiTinyMarginBegin sapUiLargeMarginTop Topicos tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+												</VBox>
+												<!--<VBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBegin"></VBox>-->
+												<VBox alignContent="Center" alignItems="Center" class="sapUiMediumMarginBegin">
+													<Image src="{= ${param>/namespace} + '/images/satisfacaoOk.jpg'}" densityAware="false" width="3.5em"/>
+													<Label id="rmvazio4" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+													<Image src="{= ${param>/namespace} + '/images/satisfacaoOk.jpg'}" densityAware="false" width="3.5em"/>
+												</VBox>
+												<VBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBottom">
+													<Label id="rmvazio5" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="lPCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="rmvazio51" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="lPNCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+												</VBox>
+												<VBox alignContent="Center" alignItems="Center" class="sapUiSmallMarginBegin">
+													<Image src="{= ${param>/namespace} + '/images/satisfacaoMedia.jpg'}" densityAware="false" width="3.5em"/>
+													<Label id="rmvazio6" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+													<Image src="{= ${param>/namespace} + '/images/satisfacaoMedia.jpg'}" densityAware="false" width="3.5em"/>
+												</VBox>
+												<VBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBottom">
+													<Label id="rmvazio7" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="lNCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="rmvazio71" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="lNNCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+												</VBox>
+												<VBox alignContent="Center" alignItems="Center" class="sapUiSmallMarginBegin">
+													<Image src="{= ${param>/namespace} + '/images/satisfacaoRuim.jpg'}" densityAware="false" width="3.5em"/>
+													<Label id="rmvazio8" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+													<Image src="{= ${param>/namespace} + '/images/satisfacaoRuim.jpg'}" densityAware="false" width="3.5em"/>
+												</VBox>
+												<VBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBottom">
+													<Label id="rmvazio9" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="lDCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="rmvazio91" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+													<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+													<Label id="lDNCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos tPreto" design="Bold"/>
+													<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+												</VBox>
+											</HBox>
+											<!--Bloco 4-->
+											<VBox alignContent="Start" alignItems="Center" class="sapUiLargeMarginBottom">
+												<Label id="rmvazio10" class="sapUiMediumMarginTop" design="Bold"/>
+												<viz:VizFrame id="gEncant" uiConfig="{applicationSet:'fiori'}" height='250px' width="290px" vizType='bar'>
+													<viz:dataset>
+														<viz.data:FlattenedDataset data="{/EncantCaracFuncSet}">
+															<viz.data:dimensions>
+																<viz.data:DimensionDefinition name="Carateristica" value="{Caracteristica}"/>
+															</viz.data:dimensions>
+															<viz.data:measures>
+																<viz.data:MeasureDefinition name="Percentual" value="{CumpTot}"/>
+															</viz.data:measures>
+														</viz.data:FlattenedDataset>
+													</viz:dataset>
+													<viz:feeds>
+														<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Percentual"/>
+														<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Carateristica"/>
+													</viz:feeds>
+												</viz:VizFrame>
+											</VBox>
+										</HBox>
+									</CustomListItem>
+								</List>
+							</VBox>
+						</Panel>
+						<Panel id="idPergun" backgroundDesign="Solid">
+							<headerToolbar>
+								<!--TAB PERGUNTAS -->
+								<Toolbar class="tLaranjaColor">
+									<Label id="idtit3espaco0" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit3espaco1" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit3espaco2" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit3espaco3" class="sapUiMediumMarginBegin"/>
+									<Title text="{i18n>titperguntas}" textAlign="Center" class="sapUiMediumMarginBegin Subtitle"/>
+								</Toolbar>
+							</headerToolbar>
+							<VBox alignContent="Center" alignItems="Center" class="sapUiMediumMarginTop">
+								<Table id="tPProced" headerText="{i18n>Procedimento}" items="{ path: '/PerguntProcedSet' }"  class="tPreto">
+									<columns>
+										<Column width="10rem" hAlign="Left">
+											<Label text="{i18n>checklist.question}" class="tPreto"/>
+										</Column>
+										<Column width="10rem" hAlign="Center">
+											<Label text="{i18n>checklist.Cumprimento}" class="tPreto"/>
+										</Column>
+										<Column width="10rem" hAlign="Left">
+											<Label text="{i18n>checklist.Recomendacao}" class="tPreto"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{Pergunta}" class="tPreto"/>
+												<Text text="{Percent}%"  class="tPreto"/>
+												<Text text="{Observacao}"  class="tPreto"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<!--INICIO - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+								<Table id="tPEncant" headerText="{i18n>Encantamento}" items="{ path: '/PerguntEncantSet'}" class="tPreto">
+									<columns>
+										<Column width="10rem" hAlign="Left">
+											<Label text="{i18n>checklist.question}" class="tPreto"/>
+										</Column>
+										<Column width="3rem" hAlign="Center">
+											<Label text="{i18n>checklist.Detrator}" design="Bold" class="tPreto"/>
+										</Column>
+										<Column width="2.5rem" hAlign="Center">
+											<Label text="{i18n>checklist.Neutro}" class="tPreto"/>
+										</Column>
+										<Column width="3rem" hAlign="Center">
+											<Label text="{i18n>checklist.Promotor}" class="tPreto"/>
+										</Column>
+										<Column width="10rem" hAlign="Left">
+											<Label text="{i18n>checklist.Recomendacao}" class="tPreto"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{Pergunta}" class="tPreto"/>
+												<Label text="{Detrator}%" class="Topicos tPreto" design="Bold"/>
+												<Label text="{Neutro}%" class="tPreto"/>
+												<Label text="{Promotor}%" class="tPreto"/>
+												<Text text="{Observacao}" class="tPreto"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<!--FIM - SSILVA - ROFF - 7000071742 - 22/04/2019-->
+							</VBox>
+							<MessageStrip id="idMPergunt" class="sapUiMediumMarginBottom tPreto" text="{i18n>textoPerguntas}" showIcon="true"/>
+						</Panel>
+						<Panel id="idConver" backgroundDesign="Solid">
+							<headerToolbar>
+								<!--TAB CONVERSAO-->
+								<Toolbar class="tVerdeColor">
+									<Label id="idtit4espaco0" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit4espaco1" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit4espaco2" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit4espaco3" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit4espaco4" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit4espaco5" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit4espaco6" class="sapUiMediumMarginBegin"/>
+									<Title text="{i18n>titConversao}" textAlign="Center" class="Subtitle"/>
+								</Toolbar>
+							</headerToolbar>
+							<HBox alignContent="Center" alignItems="Center" class="sapUiMediumMarginTop">
+								<VBox alignContent="Center" alignItems="Center">
+									<viz:VizFrame id="gConversao" uiConfig="{applicationSet:'fiori'}" height='400px' width="700px" vizType='column'>
+										<viz:dataset>
+											<viz.data:FlattenedDataset data="{/ConvLojaFuncSet}">
+												<viz.data:dimensions>
+													<viz.data:DimensionDefinition name="Semana" value="{Semana}"/>
+												</viz.data:dimensions>
+												<viz.data:measures>
+													<viz.data:MeasureDefinition name="Vendedor" value="{PercConvV}"/>
+													<viz.data:MeasureDefinition name="Loja" value="{PercConvLoja}"/>
+												</viz.data:measures>
+											</viz.data:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+											<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Vendedor,Loja"/>
+											<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Semana"/>
+										</viz:feeds>
+									</viz:VizFrame>
+									<MessageStrip id="idMConver1" class="sapUiMediumMarginBottom" showIcon="true"/>
+								</VBox>
+								<VBox alignContent="Center" alignItems="Center">
+									<viz:VizFrame id="gConvMedia" uiConfig="{applicationSet:'fiori'}" height='400px' width="400px" vizType='column'>
+										<viz:dataset>
+											<viz.data:FlattenedDataset data="{/ConvMediaSet}">
+												<viz.data:dimensions>
+													<viz.data:DimensionDefinition name="Média" value="Média"/>
+												</viz.data:dimensions>
+												<viz.data:measures>
+													<viz.data:MeasureDefinition name="Vendedor" value="{MediaConvV}"/>
+													<viz.data:MeasureDefinition name="Loja" value="{MediaConvLoja}"/>
+												</viz.data:measures>
+											</viz.data:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+											<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Vendedor,Loja"/>
+											<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Média"/>
+										</viz:feeds>
+									</viz:VizFrame>
+									<MessageStrip id="idMConver2" class="sapUiMediumMarginBottom" showIcon="true"/>
+								</VBox>
+							</HBox>
+						</Panel>
+						<Panel id="idPerdas" backgroundDesign="Solid">
+							<headerToolbar>
+								<!--TAB PERDAS-->
+								<Toolbar class="tVerdeColor">
+									<Label id="idtit5espaco0" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit5espaco1" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit5espaco2" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit5espaco3" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit5espaco4" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit5espaco5" class="sapUiLargeMarginBegin"/>
+									<Label id="idtit5espaco6" class="sapUiTinyMarginBegin"/>
+									<Title text="{i18n>titNConversao}" textAlign="Center" class="Subtitle"/>
+								</Toolbar>
+							</headerToolbar>
+							<HBox alignContent="Center" alignItems="Center" class="sapUiMediumMarginTop">
+								<VBox id="vboxContent">
+									<List id="ovpList" items="{/FunilFuncSet}" class="listCardType tPreto" width="95%" headerText="{i18n>txtEtapas}">
+										<items>
+											<CustomListItem id="listFunilVendas" type="Active" class="ResponsiveGridLayout tPreto">
+												<HBox >
+													<VBox class="sapOvpExtendedBarListFirstDataField sapOvpOverflowEllipsisDataField tPreto">
+														<!--<Label text="Etapa"/>-->
+														<Text id="_textArea" text="{Area}" class="tPreto"/>
+														<mi:ComparisonMicroChart class="sapOvpExtendedBarListFirstDataField sapOvpOverflowEllipsisDataField" maxValue="50">
+															<mi:data>
+																<mi:ComparisonMicroChartData displayValue=" " value="{= parseInt(${Percentual})}" color="{path: 'Cor'}"/>
+															</mi:data>
+														</mi:ComparisonMicroChart>
+													</VBox>
+													<!--<VBox class="ResponsiveGridLayout">-->
+													<!--<Label text="Total de clientes"/>-->
+													<Text text="{QtdTot}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom tPreto" textAlign="End" width="3rem"/>
+													<!--</VBox>	-->
+													<!--<VBox class="ResponsiveGridLayout">-->
+													<!--<Label text="Perdas"/>-->
+													<!--<c:Icon src="{= (${QtdNVendeu} === 0) ? 'sap-icon://less' : 'sap-icon://down'}" width="20px">-->
+													<!--	<c:layoutData>-->
+													<!--		<FlexItemData growFactor="1"/>-->
+													<!--	</c:layoutData>-->
+													<!--</c:Icon>-->
+													<Text text="{= (${QtdNVendeu} > 0) ? (-${QtdNVendeu}) : 0}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom tPreto" width="3rem"
+														textAlign="End"/>
+													<!--</VBox>	-->
+													<!--<VBox class="ResponsiveGridLayout">-->
+													<!--<Label text="Conclusão"/>-->
+													<Text text="{Funiltxt}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom tPreto" width="70%"/>
+													<!--</VBox>	-->
+												</HBox>
+											</CustomListItem>
+										</items>
+									</List>
+									<HBox id="hboxConversao" alignItems="Center" alignContent="Center" justifyContent="Start">
+										<NumericContent value="{= ${QtdTot} - ${QtdNVendeu}}" valueColor="Good" withMargin="false" class="sapUiSmallMarginEnd"/>
+										<Title titleStyle="H4" text="{= (${QtdTot} - ${QtdNVendeu}) > 1 ? ${i18n>txtConvertidos} : ${i18n>txtConvertido} }" class="tPreto"/>
+									</HBox>
+								</VBox>
+								<!---->
+								<viz:VizFrame id="idPerdasVendas" uiConfig="{applicationSet:'fiori'}" height='600px' width="600px" vizType='dual_combination' visible="true">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{/FunilPerdasItemFuncSet}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="Descricao" value="{Descricao}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="Percentual" value="{Perc}"/>
+												<viz.data:MeasureDefinition name="QtdNVendeu" value="{QtdNVendeu}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="valueAxis2" type="Measure" values="Percentual"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="QtdNVendeu"/>
+										<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Descricao"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</HBox>
+							<MessageStrip id="idMPerdas" class="sapUiMediumMarginBottom" text="{i18n>textoPerdas}" showIcon="true"/>
+						</Panel>
+						<Panel id="idObs" backgroundDesign="Solid">
+							<HBox fitContainer="true" alignContent="Center" alignItems="Center">
+								<Image src="{= ${param>/namespace} + '/images/Observacoes.png'}" densityAware="false" height="600px" width="1250px"/>
+							</HBox>
+						</Panel>
+					</ScrollContainer>
+				</l:fixContent>
+			</l:FixFlex>
+			<sap.m.semantic:customFooterContent>
+				<Button text="Gerar PDF" icon="sap-icon://pdf-attachment" width="8rem" id="btnPDF1" press="gerarPDF" class="sapUiSmallMarginBegin"/>
+			</sap.m.semantic:customFooterContent>
+		</sap.m.semantic:FullscreenPage>
+	</App>
+</mvc:View>

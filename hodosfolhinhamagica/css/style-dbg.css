@@ -1,0 +1,19 @@
+/* Enter your custom styles here */
+.ABC{
+     font-size:4rem !important;
+    }
+.Subtitle{
+     font-size:1.5rem !important;
+    }    
+.tAzulColor{
+     background-color: #418ac7 !important;
+}
+.tLaranjaColor{
+     background-color: #fabd64 !important;
+}
+.tVerdeColor{
+     background-color: #5ad45a !important;
+}
+.sapOvpBarList.sapOvpBarCondensedList{
+    padding:.65rem 1rem .75rem;
+}

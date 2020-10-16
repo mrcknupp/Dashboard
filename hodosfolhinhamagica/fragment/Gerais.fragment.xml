@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog noDataText="{i18n>txtNenhumGeral}" title="{i18n>txtSelGeral}" search="onDialogSearch" confirm="onValueConfirm"
+		items="{/GeneralSet}">
+		<StandardListItem title="{Geral}" description="{DescGeral}" iconDensityAware="false" iconInset="false" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

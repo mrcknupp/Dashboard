@@ -1,0 +1,59 @@
+.ABC {
+    font-size: 4rem!important
+}
+
+.abc {
+    font-size: 1.8rem!important
+}
+.CVerde {
+    background-color: #5ad45a!important
+}
+.LVerde {
+	font-size: 1.1rem!important;
+    color: #5ad45a!important
+}
+
+.IPreto {
+	font-size: 1.45rem!important;
+    color: #000000!important
+}
+
+.LVermelho {
+	font-size: 1.1rem!important;
+    color: #FF0000!important
+}
+
+.Subtitle {
+    font-size: 1.2rem!important;
+    color: #000000!important
+}
+
+.Topicos {
+    font-size: 1.1rem!important
+}
+
+.tCinzaColor {
+    background-color: #989898!important
+}
+.tCinzaClaroColor {
+    background-color: #C1C1C1!important
+}
+.tAzulColor {
+    background-color: #418ac7!important
+}
+
+.tPreto {
+    color: #000000!important
+}
+
+.tLaranjaColor {
+    background-color: #fabd64!important
+}
+
+.tVerdeColor {
+    background-color: #5ad45a!important
+}
+
+.sapOvpBarList.sapOvpBarCondensedList {
+    padding: .65rem 1rem .75rem
+}

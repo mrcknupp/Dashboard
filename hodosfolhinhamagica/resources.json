@@ -1,0 +1,281 @@
+{
+    "resources": [
+        {
+            "name": ".che/project.json"
+        },
+        {
+            "name": ".gitignore"
+        },
+        {
+            "name": "Component-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "Gruntfile.js"
+        },
+        {
+            "name": "controller/Main-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/Main.controller.js"
+        },
+        {
+            "name": "controls/3rdparty/Chart-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controls/3rdparty/Chart.js"
+        },
+        {
+            "name": "controls/BaseChartJS-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controls/BaseChartJS.js"
+        },
+        {
+            "name": "controls/BaseChartJSRenderer-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controls/BaseChartJSRenderer.js"
+        },
+        {
+            "name": "controls/RadarChartJS-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controls/RadarChartJS.js"
+        },
+        {
+            "name": "controls/RadarChartJSRenderer-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controls/RadarChartJSRenderer.js"
+        },
+        {
+            "name": "controls/library-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controls/library.js"
+        },
+        {
+            "name": "css/style-dbg.css",
+            "isDebug": true
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "di.code-validation.core_issues.json"
+        },
+        {
+            "name": "dist"
+        },
+        {
+            "name": "extended_runnable_file.html"
+        },
+        {
+            "name": "fragment/Anos.fragment.xml"
+        },
+        {
+            "name": "fragment/Gerais.fragment.xml"
+        },
+        {
+            "name": "fragment/Lojas.fragment.xml"
+        },
+        {
+            "name": "fragment/Meses.fragment.xml"
+        },
+        {
+            "name": "fragment/Paises.fragment.xml"
+        },
+        {
+            "name": "fragment/Regionais.fragment.xml"
+        },
+        {
+            "name": "fragment/Semanas.fragment.xml"
+        },
+        {
+            "name": "fragment/Vendedores.fragment.xml"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "images/Observacoes.png"
+        },
+        {
+            "name": "images/centauro.jpg"
+        },
+        {
+            "name": "images/hodos.png"
+        },
+        {
+            "name": "images/satisfacaoMedia.jpg"
+        },
+        {
+            "name": "images/satisfacaoOk.jpg"
+        },
+        {
+            "name": "images/satisfacaoRuim.jpg"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "libs/ExportPageToPDF.js"
+        },
+        {
+            "name": "libs/addimage.js"
+        },
+        {
+            "name": "libs/adler32cs.js"
+        },
+        {
+            "name": "libs/canvg.js"
+        },
+        {
+            "name": "libs/html2canvas.js"
+        },
+        {
+            "name": "libs/jsPDF.js"
+        },
+        {
+            "name": "libs/png.js"
+        },
+        {
+            "name": "libs/png_support.js"
+        },
+        {
+            "name": "libs/rgbcolor.js"
+        },
+        {
+            "name": "libs/stackblur.js"
+        },
+        {
+            "name": "libs/zlib.js"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "manifest-bundle.zip"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "model/models-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "node_modules"
+        },
+        {
+            "name": "package-lock.json"
+        },
+        {
+            "name": "package.json"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        },
+        {
+            "name": "sap-ui-cachebuster-info.json"
+        },
+        {
+            "name": "test/integration/AllJourneys-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "test/integration/AllJourneys.js"
+        },
+        {
+            "name": "test/integration/NavigationJourney-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "test/integration/NavigationJourney.js"
+        },
+        {
+            "name": "test/integration/arrangements/Startup-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "test/integration/arrangements/Startup.js"
+        },
+        {
+            "name": "test/integration/opaTests.qunit-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "test/integration/opaTests.qunit.html"
+        },
+        {
+            "name": "test/integration/opaTests.qunit.js"
+        },
+        {
+            "name": "test/integration/pages/Main-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "test/integration/pages/Main.js"
+        },
+        {
+            "name": "test/testsuite.qunit-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "test/testsuite.qunit.html"
+        },
+        {
+            "name": "test/testsuite.qunit.js"
+        },
+        {
+            "name": "test/unit/AllTests-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "test/unit/AllTests.js"
+        },
+        {
+            "name": "test/unit/controller/Main-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "test/unit/controller/Main.controller.js"
+        },
+        {
+            "name": "test/unit/unitTests.qunit-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "test/unit/unitTests.qunit.html"
+        },
+        {
+            "name": "test/unit/unitTests.qunit.js"
+        },
+        {
+            "name": "view/Main.view.xml"
+        }
+    ]
+}
