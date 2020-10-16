@@ -1,0 +1,222 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:c="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:micro="sap.suite.ui.microchart" controllerName="hodos.hodosfunil.controller.Main" displayBlock="true"
+	xmlns:semantic="sap.m.semantic" xmlns:viz.data="sap.viz.ui5.data" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+	<App id="idAppControl">
+		<pages>
+			<sap.m.semantic:FullscreenPage xmlns:sap.m.semantic="sap.m.semantic" title="{i18n>appTitle}" id="mainPageFunil" showNavButton="false">
+				<Page enableScrolling="true" showHeader="false">
+					<content>
+						<IconTabBar upperCase="true" expandable="false" applyContentPadding="true" stretchContentHeight="false"
+							class="sapUiResponsiveContentPadding">
+							<items>
+								<IconTabFilter text="{i18n>txtDadosSelecao}"/>
+							</items>
+							<content>
+								<FlexBox id="fbFilter" alignItems="Center" justifyContent="Start" class="ResponsiveGridLayout" alignContent="SpaceBetween"
+									backgroundDesign="Solid">
+									<items>
+										<Label text="{i18n>txtPais}:" design="Bold" class="sapUiSmallMarginBegin"/>
+										<Text text="{filter>/Pais}" class="sapUiSmallMarginBegin"/>
+										<Label text="{i18n>txtGeral}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Geral} !== '' }"/>
+										<Text text="{filter>/Geral}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Geral} !== ''}"/>
+										<Label text="{i18n>txtRegional}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Regional} !== ''}"/>
+										<Text text="{filter>/Regional}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Regional} !== ''}"/>
+										<Label text="{i18n>txtCodLoja}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodLoja} !== ''}"/>
+										<Text text="{filter>/CodLoja}" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodLoja} !== ''}"/>
+										<Label text="{i18n>txtCodVendedor}" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodVendedor} !== ''}"/>
+										<Text text="{filter>CodVendedor}" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodVendedor} !== ''}"/>
+										<Label text="{i18n>txtAno}:" design="Bold" class="sapUiSmallMarginBegin"/>
+										<Text text="{filter>/Ano}" class="sapUiSmallMarginBegin"/>
+										<Label text="{i18n>txtMes}:" design="Bold" class="sapUiSmallMarginBegin"/>
+										<Text text="{filter>/Mes}" class="sapUiSmallMarginBegin"/>
+										<Label text="{i18n>txtSemana}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Semana} !== ''}"/>
+										<Text text="{filter>/Semana}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Semana} !== ''}"/>
+									</items>
+								</FlexBox>
+							</content>
+							<layoutData>
+								<FlexItemData growFactor="0.3" baseSize="0%"/>
+							</layoutData>
+						</IconTabBar>
+						<VBox id="vboxContent" class="sapUiSmallMargin">
+							<MessageStrip class="sapUiSmallMarginBottom" text="{i18n>txtPossiveisAnalises1}" showIcon="true"/>
+							<f:Form editable="true" width="100%">
+								<f:layout>
+									<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4"
+										emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+								</f:layout>
+								<f:formContainers>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement>
+												<Title titleStyle="H1" text="{i18n>titleFunilVendas}"/>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement>
+												<List id="ovpList" items="{/FunilFuncSet}" class="listCardType" width="100%">
+													<headerToolbar>
+														<Toolbar>
+															<f:SimpleForm singleContainerFullSize="false" columnsL="5" columnsM="1" columnsXL="5" maxContainerCols="5" layout="ResponsiveGridLayout"
+																width="100%">
+																<f:content>
+																	<Title titleStyle="H4" text="{i18n>txtEtapas}"/>
+																	<Title titleStyle="H4" text="{i18n>txtTotClientes}" textAlign="End"/>
+																	<Title titleStyle="H4" text="{i18n>txtPerdasClientes}" textAlign="End"/>
+																	<Title titleStyle="H4" text="{i18n>txtObservacao}" textAlign="End"/>
+																</f:content>
+															</f:SimpleForm>
+														</Toolbar>
+													</headerToolbar>
+													<items>
+														<CustomListItem id="listFunilVendas" type="Active" class="sapOvpBarList sapOvpBarCondensedList">
+															<f:SimpleForm singleContainerFullSize="false" columnsL="5" columnsM="1" columnsXL="5" maxContainerCols="5" layout="ResponsiveGridLayout"
+																width="100%">
+																<f:content>
+																	<VBox>
+																		<Text id="_textArea" class="sapOvpExtendedBarListFirstDataField sapOvpOverflowEllipsisDataField" text="{Area}"/>
+																		<micro:ComparisonMicroChart height="auto" width="auto" maxValue="50">
+																			<micro:data>
+																				<micro:ComparisonMicroChartData displayValue=" " value="{= parseInt(${Percentual})}" color="{path: 'Cor'}"/>
+																			</micro:data>
+																		</micro:ComparisonMicroChart>
+																	</VBox>
+																	<Text text="{QtdTot}" textAlign="End" class="sapMObjectNumber sapMObjectNumberEmph sapMObjectNumberStatusNone"/>
+																	<Text text="{= (${QtdNVendeu} > 0) ? (-${QtdNVendeu}) : 0}" textAlign="End"
+																		class="sapMObjectNumber sapMObjectNumberEmph sapMObjectNumberStatusNone"/>
+																	<Text text="{Funiltxt}" class="MarginBegin"/>
+																</f:content>
+															</f:SimpleForm>
+														</CustomListItem>
+													</items>
+												</List>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement>
+												<HBox id="hboxConversao" alignItems="Center" alignContent="Center" justifyContent="Start">
+													<NumericContent value="{= ${QtdTot} - ${QtdNVendeu}}" valueColor="Good" withMargin="false" class="sapUiSmallMarginEnd"/>
+													<Title titleStyle="H4" text="{= (${QtdTot} - ${QtdNVendeu}) > 1 ? ${i18n>txtConvertidos} : ${i18n>txtConvertido} }"/>
+												</HBox>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement>
+												<Title titleStyle="H1" text="{i18n>titlePerdaVendas}"/>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement>
+												<FlexBox alignItems="Start">
+													<viz:VizFrame id="idPerdasVendas" uiConfig="{applicationSet:'fiori'}" height='400px' width="600px" vizType='dual_combination'>
+														<viz:dataset>
+															<viz.data:FlattenedDataset data="{/FunilPerdasSet}">
+																<viz.data:dimensions>
+																	<viz.data:DimensionDefinition name="Area" value="{Area}"/>
+																</viz.data:dimensions>
+																<viz.data:measures>
+																	<viz.data:MeasureDefinition name="Percentual" value="{Perc}"/>
+																	<viz.data:MeasureDefinition name="QtdNVendeu" value="{QtdNVendeu}"/>
+																</viz.data:measures>
+															</viz.data:FlattenedDataset>
+														</viz:dataset>
+														<viz:feeds>
+															<viz.feeds:FeedItem uid="valueAxis2" type="Measure" values="Percentual"/>
+															<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="QtdNVendeu"/>
+															<viz.feeds:FeedItem id="feedCategoryAxis" uid="categoryAxis" type="Dimension" values="Area"/>
+														</viz:feeds>
+													</viz:VizFrame>
+												</FlexBox>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement>
+												<Title titleStyle="H1" text="{i18n>titlePerdaVendasPerg}"/>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+								</f:formContainers>
+							</f:Form>
+						</VBox>
+						<FlexBox alignItems="Start" class="sapUiSmallMargin">
+							<items>
+								<viz:VizFrame id="idPerguntasVendas0" uiConfig="{applicationSet:'fiori'}" height='400px' width="600px" vizType='dual_combination'
+									visible="true">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{/FunilPerguntasSet}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="DescricaoCurta" value="{DescricaoCurta}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="Percentual" value="{Perc}"/>
+												<viz.data:MeasureDefinition name="QtdNVendeu" value="{QtdNVendeu}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="valueAxis2" type="Measure" values="Percentual"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="QtdNVendeu"/>
+										<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="DescricaoCurta"/>
+									</viz:feeds>
+								</viz:VizFrame>
+								<viz:VizFrame id="idPerguntasVendas1" uiConfig="{applicationSet:'fiori'}" height='400px' width="600px" vizType='dual_combination'
+									visible="true">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{/FunilPerguntasSet}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="DescricaoCurta" value="{DescricaoCurta}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="Percentual" value="{Perc}"/>
+												<viz.data:MeasureDefinition name="QtdNVendeu" value="{QtdNVendeu}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="valueAxis2" type="Measure" values="Percentual"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="QtdNVendeu"/>
+										<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="DescricaoCurta"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</items>
+						</FlexBox>
+						<FlexBox alignItems="Start">
+							<items>
+								<viz:VizFrame id="idPerguntasVendas2" uiConfig="{applicationSet:'fiori'}" height='400px' width="600px" vizType='dual_combination'
+									visible="false">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{/FunilPerguntasSet}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="DescricaoCurta" value="{DescricaoCurta}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="Percentual" value="{Perc}"/>
+												<viz.data:MeasureDefinition name="QtdNVendeu" value="{QtdNVendeu}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="valueAxis2" type="Measure" values="Percentual"/>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="QtdNVendeu"/>
+										<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="DescricaoCurta"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</items>
+						</FlexBox>
+					</content>
+				</Page>
+			</sap.m.semantic:FullscreenPage>
+		</pages>
+	</App>
+</mvc:View>
