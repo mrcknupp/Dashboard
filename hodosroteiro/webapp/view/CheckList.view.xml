@@ -1,0 +1,78 @@
+<mvc:View controllerName="hodos.hodosroteiro.controller.CheckList" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" displayBlock="true" xmlns:tnt="sap.tnt" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:l="sap.ui.layout"
+	xmlns:c="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:mi="sap.suite.ui.microchart">
+	<sap.m.semantic:FullscreenPage xmlns:sap.m.semantic="sap.m.semantic" title="{i18n>mainPage.title}" id="detNotasChecklist"
+		showNavButton="false" navButtonPress="onNavBack">
+		<Page enableScrolling="true" showHeader="false">
+			<content>
+				<IconTabBar upperCase="true" expandable="false" applyContentPadding="true" stretchContentHeight="false"
+					class="sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter text="{i18n>txtDadosSelecao}"/>
+					</items>
+					<content>
+						<FlexBox id="fbFilter" alignItems="Center" justifyContent="Start" class="ResponsiveGridLayout" alignContent="SpaceBetween"
+							backgroundDesign="Solid">
+							<items>
+								<Label text="{i18n>txtPais}:" design="Bold" class="sapUiSmallMarginBegin"/>
+								<Text text="{filter>/Pais}" class="sapUiSmallMarginBegin"/>
+								<Label text="{i18n>txtGeral}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Geral} !== '' }"/>
+								<Text text="{filter>/Geral}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Geral} !== ''}"/>
+								<Label text="{i18n>txtRegional}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Regional} !== ''}"/>
+								<Text text="{filter>/Regional}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Regional} !== ''}"/>
+								<Label text="{i18n>txtCodLoja}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodLoja} !== ''}"/>
+								<Text text="{filter>/CodLoja}" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodLoja} !== ''}"/>
+								<Label text="{i18n>txtCodVendedor}" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodVendedor} !== ''}"/>
+								<Text text="{filter>CodVendedor}" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodVendedor} !== ''}"/>
+								<Label text="{i18n>txtAno}:" design="Bold" class="sapUiSmallMarginBegin"/>
+								<Text text="{filter>/Ano}" class="sapUiSmallMarginBegin"/>
+								<Label text="{i18n>txtMes}:" design="Bold" class="sapUiSmallMarginBegin"/>
+								<Text text="{filter>/Mes}" class="sapUiSmallMarginBegin"/>
+								<Label text="{i18n>txtSemana}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Semana} !== ''}"/>
+								<Text text="{filter>/Semana}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Semana} !== ''}"/>
+							</items>
+						</FlexBox>
+					</content>
+					<layoutData>
+						<FlexItemData growFactor="0.3" baseSize="0%"/>
+					</layoutData>
+				</IconTabBar>
+				<MessageStrip class="sapUiSmallMarginBottom" text="{i18n>txtChecklist}" showIcon="true" enableFormattedText="true"/>
+				<Table inset="false" id="tableChecklist"
+					items="{ path: 'check>/list', sorter: [{ path: 'Item', descending: false, group : '.getGroup' }], groupHeaderFactory: '.getGroupHeader' }">
+					<columns>
+						<Column>
+							<Label text="{i18n>checklist.question}"/>
+						</Column>
+						<Column width="10rem" hAlign="Center">
+							<Label text="{i18n>checklist.type}"/>
+						</Column>
+						<Column width="5rem" hAlign="Center">
+							<Label text="{i18n>checklist.total}"/>
+						</Column>
+						<Column width="5rem" hAlign="Center">
+							<Label text="{i18n>checklist.vendeu}"/>
+						</Column>
+						<Column width="6rem" hAlign="Center">
+							<Label text="{i18n>checklist.naoVendeu}" class="titleNVendeu"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{ path: 'check>Item', formatter: '.formatter.pergunta' }"/>
+								<Text text="{ path: 'check>TipoPergunta', formatter: '.formatter.tipoPergunta' }"/>
+								<tnt:InfoLabel id="infTot" text="{check>CumpTot}" displayOnly="true"
+									colorScheme="{ path: 'check>CumpTot', formatter: '.formatter.colorCheck' }"/>
+								<tnt:InfoLabel id="infVen" text="{check>CumpVendeu}" displayOnly="true"
+									colorScheme="{ path: 'check>CumpVendeu', formatter: '.formatter.colorCheck' }"/>
+								<tnt:InfoLabel id="infNVe" text="{check>CumpNVendeu}" displayOnly="true"
+									colorScheme="{ path: 'check>CumpNVendeu', formatter: '.formatter.colorCheck' }"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+		</Page>
+	</sap.m.semantic:FullscreenPage>
+</mvc:View>

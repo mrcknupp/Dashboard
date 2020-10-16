@@ -1,0 +1,21 @@
+/* Enter your custom styles here */
+
+.pageCheckList .sapMITBSelected>.sapMITBContentArrow {
+    border-bottom-color: transparent !important;
+}
+
+.background.green {
+    background-color: #66FF33;
+}
+
+.background.red {
+    background-color: #FF3300;
+}
+
+.background.yellow {
+    background-color: #FFFF66;
+}
+
+.ABC {
+    font-size: 4rem!important
+}

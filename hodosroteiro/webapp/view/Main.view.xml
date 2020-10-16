@@ -1,0 +1,152 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:c="sap.ui.core"
+	xmlns:semantic="sap.m.semantic" xmlns:f="sap.ui.layout.form" xmlns:mi="sap.suite.ui.microchart" xmlns:grid="sap.ui.layout.cssgrid"
+	controllerName="hodos.hodosroteiro.controller.Main" displayBlock="true">
+	<App id="idAppControl">
+		<pages>
+			<semantic:DetailPage title="{i18n>mainPage.title}" id="mainPageRoteiro" busy="{screenView>/busy}">
+				<IconTabBar upperCase="true" expandable="false" applyContentPadding="true" stretchContentHeight="false"
+					class="sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter id="itb1" text="{i18n>txtDadosSelecao}"/>
+						<IconTabFilter id="itb2" text=" "/>
+					</items>
+					<content>
+						<FlexBox id="fbFilter" alignItems="Center" justifyContent="Start" class="ResponsiveGridLayout" alignContent="SpaceBetween"
+							backgroundDesign="Solid">
+							<items>
+								<Label text="{i18n>txtPais}:" design="Bold" class="sapUiSmallMarginBegin"/>
+								<Text text="{filter>/Pais}" class="sapUiSmallMarginBegin"/>
+								<Label text="{i18n>txtGeral}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Geral} !== '' }"/>
+								<Text text="{filter>/Geral}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Geral} !== ''}"/>
+								<Label text="{i18n>txtRegional}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Regional} !== ''}"/>
+								<Text text="{filter>/Regional}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Regional} !== ''}"/>
+								<Label text="{i18n>txtCodLoja}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodLoja} !== ''}"/>
+								<Text text="{filter>/CodLoja}" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodLoja} !== ''}"/>
+								<Label text="{i18n>txtCodVendedor}" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodVendedor} !== ''}"/>
+								<Text text="{filter>/CodVendedor}" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodVendedor} !== ''}"/>
+								<Label text="{i18n>txtAno}:" design="Bold" class="sapUiSmallMarginBegin"/>
+								<Text text="{filter>/Ano}" class="sapUiSmallMarginBegin"/>
+								<Label text="{i18n>txtMes}:" design="Bold" class="sapUiSmallMarginBegin"/>
+								<Text text="{filter>/Mes}" class="sapUiSmallMarginBegin"/>
+								<Label text="{i18n>txtSemana}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Semana} !== ''}"/>
+								<Text text="{filter>/Semana}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Semana} !== ''}"/>
+							</items>
+						</FlexBox>
+					</content>
+					<layoutData>
+						<FlexItemData growFactor="0.3" baseSize="0%"/>
+					</layoutData>
+				</IconTabBar>
+				<semantic:content>
+					<!--Versão 2.0-->
+					<VBox alignContent="Center" alignItems="Center" width="100%" height="390px" backgroundDesign="Solid">
+						<MessageStrip class="sapUiSmallMarginBottom" text="{i18n>txtRoteiro}" showIcon="true"/>
+						<List id="idList1" inset="false">
+							<CustomListItem>
+								<HBox alignContent="Start" alignItems="Center" class="sapUiLargeMarginTop">
+									<Label id="idespaco00" class="sapUiLargeMarginBegin" design="Bold"/>
+									<Label id="idespaco01" class="sapUiLargeMarginBegin" design="Bold"/>
+									<Label id="idespaco02" class="sapUiLargeMarginBegin" design="Bold"/>
+									<Label text="{i18n>mainPage.cumprimento}" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+									<Label id="idespaco" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+									<Label id="idespac00" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+									<Label id="idespac01" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+									<Label id="idespac02" class="sapUiLargeMarginBegin Topicos" design="Bold"/>									
+									<Label text="{i18n>mainPage.procedimento}" class="sapUiTinyMarginBegin Topicos" design="Bold"/>
+									<Label id="idPerProced" class="sapUiTinyMarginBegin abc" design="Bold"/>
+									<Label id="idespaco0" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+									<Label id="idespaco1" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+									<Label id="idespaco2" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+									<Label text="{i18n>mainPage.encantamento}" class="Topicos" design="Bold"/>
+									<Label id="idPerEncant" class="sapUiTinyMarginBegin abc" design="Bold"/>
+									<Label id="idespaco3" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+									<Label id="idespaco4" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+									<Label id="idespaco5" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+									<Label id="idespaco6" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+									<Label id="idespaco7" class="sapUiLargeMarginBegin Topicos" design="Bold"/>
+								</HBox>
+							</CustomListItem>
+						</List>
+						<List id="idList2">
+							<CustomListItem>
+								<HBox alignContent="Start" alignItems="Center" class="sapUiLargeMarginBottom">
+									<!--Bloco 1-->
+									<VBox alignContent="Center" alignItems="Center" class="sapUiSmallMarginBottom">
+										<Label id="lCumpRot" text="{path: '/RoteiroFuncSet/CumpRot'}" class="ABC"/>
+									</VBox>
+									<!--Bloco 2-->
+									<HBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBegin">
+										<VBox alignContent="Center" alignItems="Center" class="sapUiMediumMarginBegin">
+											<Label text="{i18n>mainPage.chartTitle.quando}" class="LVerde" design="Bold"/>
+											<Label text="{i18n>mainPage.chartTitle.vendeu}" class="LVerde" design="Bold"/>
+											<Label text="{i18n>mainPage.chartTitle.quando}" class="LVermelho sapUiLargeMarginTop" design="Bold"/>
+											<Label text="{i18n>mainPage.chartTitle.naoVendeu}" class="LVermelho" design="Bold"/>
+										</VBox>
+										<VBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBottom">
+											<Label id="rmvazio0" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+											<Label id="rmRotProced" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos" design="Bold"/>
+											<Label id="rmvazio1" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+											<Label id="rmRotNProced" class="sapUiTinyMarginBegin sapUiLargeMarginTop Topicos" design="Bold"/>
+										</VBox>
+									</HBox>
+									<!--Bloco 3-->
+									<HBox alignContent="Start" alignItems="Center" class="sapUiLargeMarginBegin" backgroundDesign="Solid">
+										<VBox alignContent="Center" alignItems="Center">
+											<Label text="{i18n>mainPage.chartTitle.quando}" class="LVerde" design="Bold"/>
+											<Label text="{i18n>mainPage.chartTitle.vendeu}" class="LVerde" design="Bold"/>
+											<Label text="{i18n>mainPage.chartTitle.quando}" class="LVermelho sapUiLargeMarginTop" design="Bold"/>
+											<Label text="{i18n>mainPage.chartTitle.naoVendeu}" class="LVermelho" design="Bold"/>
+										</VBox>
+										<VBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBottom">
+											<Label id="rmvazio2" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+											<Label id="rmRotEncant" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos" design="Bold"/>
+											<Label id="rmvazio3" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+											<Label id="rmRotNEncant" class="sapUiTinyMarginBegin sapUiLargeMarginTop Topicos" design="Bold"/>
+										</VBox>
+										<VBox alignContent="Center" alignItems="Center" class="sapUiMediumMarginBegin">
+											<Image src="{imgs>/jpg/ok}" densityAware="false" width="3.5em"/>
+											<Label id="rmvazio4" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+											<Image src="{imgs>/jpg/ok}" densityAware="false" width="3.5em"/>
+										</VBox>
+										<VBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBottom">
+											<Label id="rmvazio5" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+											<Label id="lPCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos" design="Bold"/>
+											<Label id="rmvazio51" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+											<Label id="lPNCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos" design="Bold"/>
+										</VBox>
+										<VBox alignContent="Center" alignItems="Center" class="sapUiSmallMarginBegin">
+											<Image src="{imgs>/jpg/media}" densityAware="false" width="3.5em"/>
+											<Label id="rmvazio6" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+											<Image src="{imgs>/jpg/media}" densityAware="false" width="3.5em"/>
+										</VBox>
+										<VBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBottom">
+											<Label id="rmvazio7" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+											<Label id="lNCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos" design="Bold"/>
+											<Label id="rmvazio71" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+											<Label id="lNNCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos" design="Bold"/>
+										</VBox>
+										<VBox alignContent="Center" alignItems="Center" class="sapUiSmallMarginBegin">
+											<Image src="{imgs>/jpg/ruim}" densityAware="false" width="3.5em"/>
+											<Label id="rmvazio8" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+											<Image src="{imgs>/jpg/ruim}" densityAware="false" width="3.5em"/>
+										</VBox>
+										<VBox alignContent="Center" alignItems="Center" class="sapUiLargeMarginBottom">
+											<Label id="rmvazio9" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
+											<Label id="lDCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos" design="Bold"/>
+											<Label id="rmvazio91" class="sapUiSmallMarginBegin sapUiMediumMarginTop" design="Bold"/>
+											<Label id="lDNCumpTot" class="sapUiTinyMarginBegin sapUiMediumMarginTop Topicos" design="Bold"/>
+										</VBox>
+									</HBox>
+								</HBox>
+							</CustomListItem>
+						</List>
+					</VBox>
+				</semantic:content>
+				<semantic:customFooterContent>
+					<Button text="{i18n>mainPage.btCheckList}" press="onCheckList"/>
+					<Button text="{i18n>mainPage.btVision}" press="onVision"/>
+				</semantic:customFooterContent>
+			</semantic:DetailPage>
+		</pages>
+	</App>
+</mvc:View>
