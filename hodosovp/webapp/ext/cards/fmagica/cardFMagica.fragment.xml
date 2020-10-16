@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<VBox height="336px">
+		<VBox alignItems="Center" alignContent="Center" justifyContent="Center" class="sapUiSmallMargin" height="100%">
+			<Button id="btnFMagica" icon="sap-icon://table-chart" width="100%" text="{i18n>txtFolhaMagica}" press="onFolhaMagica" type="Accept"/>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

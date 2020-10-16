@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<VBox height="336px">
+		<VBox alignItems="Center" alignContent="Center" justifyContent="Center" binding="{conversao>/}" class="sapUiSmallMargin" height="100%">
+			<NumericContent id="ovpNumContentConversao" value="{conversao>PercConv}" scale="%" valueColor="Good" withMargin="false"
+				class="sapUiSmallMarginEnd ovpCustomNumericContent" press="onConversaoPress"/>
+			<Title id="ovpTitleConversao" titleStyle="H4" text="{i18n>txtConversao}"/>
+		</VBox>
+		<Text text="{i18n>txtConversaoLong}" class="sapUiSmallMargin"/>
+	</VBox>
+</core:FragmentDefinition>

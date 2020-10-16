@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<VBox height="336px">
+		<VBox alignItems="Center" alignContent="Center" justifyContent="Center" binding="{roteiro>/}" class="sapUiSmallMargin" height="100%">
+			<NumericContent id="ovpNumContentCumpRoteiro" value="{roteiro>CumpRot}" scale="%" valueColor="Good" withMargin="false"
+				class="sapUiSmallMarginEnd ovpCustomNumericContent" press="onRoteiroPress"/>
+			<Title id="ovpTitleCumpRoteiro" titleStyle="H4" text="{i18n>txtCumpRoteiro}"/>
+		</VBox>
+		<Text text="{i18n>txtCumpRoteiroLong}" class="sapUiSmallMargin"/>
+	</VBox>
+</core:FragmentDefinition>

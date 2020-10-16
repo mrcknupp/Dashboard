@@ -1,0 +1,44 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZHODOS_SRV" xml:lang="pt" sap:schema-version="1">
+			<EntityType Name="GlobalFilter" sap:label="Filtro" sap:semantics="parameters" sap:content-version="1">
+				<Key><PropertyRef Name="CodLoja"/><PropertyRef Name="Ano"/><PropertyRef Name="Semana"/></Key><Property Name="CodLoja" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Código da loja"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Ano" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Ano" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Semana" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Semana" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><NavigationProperty Name="Results" Relationship="ZHODOS_SRV.ToExtended" FromRole="FromRole_ToExtended" ToRole="ToRole_ToExtended"/></EntityType>
+			<EntityType Name="GlobalFilterExtended" sap:label="Filtro" sap:semantics="aggregate" sap:content-version="1">
+				<Key><PropertyRef Name="CodLoja"/><PropertyRef Name="Ano"/><PropertyRef Name="Semana"/><PropertyRef Name="CodVendedor"/></Key><Property Name="CodLoja" Type="Edm.String" Nullable="false" MaxLength="4" sap:parameter="mandatory" sap:unicode="false"
+					sap:label="Área def.imprecisam., evtlm.utiliz.p/níveis Support Package" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Ano" Type="Edm.String" Nullable="false" MaxLength="4" sap:parameter="mandatory" sap:unicode="false" sap:label="Contador"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Semana" Type="Edm.String" Nullable="false" MaxLength="2" sap:parameter="mandatory" sap:unicode="false"
+					sap:label="Nº dois dígitos" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="CodVendedor" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="char15" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityType Name="Store" sap:label="Loja" sap:content-version="1">
+				<Key><PropertyRef Name="CodLoja"/></Key><Property Name="CodLoja" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Código da loja"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Year" sap:label="Ano" sap:content-version="1">
+				<Key><PropertyRef Name="CodLoja"/><PropertyRef Name="Ano"/></Key><Property Name="CodLoja" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Código da loja"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ano" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Ano" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Week" sap:label="Semana" sap:content-version="1">
+				<Key><PropertyRef Name="CodLoja"/><PropertyRef Name="Ano"/><PropertyRef Name="Semana"/></Key><Property Name="CodLoja" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Código da loja"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ano" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Ano" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Semana" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Semana" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="ToExtended" sap:content-version="1"><End Type="ZHODOS_SRV.GlobalFilter" Multiplicity="1" Role="FromRole_ToExtended"/><End Type="ZHODOS_SRV.GlobalFilterExtended" Multiplicity="*" Role="ToRole_ToExtended"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ToExtended"><PropertyRef Name="CodLoja"/><PropertyRef Name="Ano"/><PropertyRef Name="Semana"/></Principal>
+					<Dependent Role="ToRole_ToExtended"><PropertyRef Name="CodLoja"/><PropertyRef Name="Ano"/><PropertyRef Name="Semana"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZHODOS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="GlobalFilterSet" EntityType="ZHODOS_SRV.GlobalFilter" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:searchable="true" sap:pageable="false" sap:content-version="1"/><EntitySet Name="GlobalFilterExtendedSet" EntityType="ZHODOS_SRV.GlobalFilterExtended" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/><EntitySet Name="StoreSet" EntityType="ZHODOS_SRV.Store" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="YearSet" EntityType="ZHODOS_SRV.Year" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="WeekSet" EntityType="ZHODOS_SRV.Week" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="ToExtendedSet" Association="ZHODOS_SRV.ToExtended" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:content-version="1"><End EntitySet="GlobalFilterSet" Role="FromRole_ToExtended"/><End EntitySet="GlobalFilterExtendedSet" Role="ToRole_ToExtended"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZHODOS_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZHODOS_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

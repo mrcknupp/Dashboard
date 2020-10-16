@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" xmlns:micro="sap.suite.ui.microchart">
+	<VBox height="336px">
+		<List id="ovpList" items="{funilvendas>/}" class="listCardType" itemPress="onFunilVendasPress">
+			<items>
+				<CustomListItem id="listItem" type="Inactive" class="sapOvpBarList sapOvpBarCondensedList">
+					<VBox class="sapOvpBarListVBoxLeft">
+						<Text id="_textArea" class="sapOvpExtendedBarListFirstDataField sapOvpOverflowEllipsisDataField" text="{funilvendas>Area}"/>
+						<HBox class="sapOvpBarListHBox sapOvpBarStandardList">
+							<micro:ComparisonMicroChart class="sapOvpBarListComparisonMicroChartAlignment" width="100%" shrinkable="true" maxValue="50">
+								<micro:data>
+									<micro:ComparisonMicroChartData displayValue=" " value="{path: 'funilvendas>Percentual', formatter: '.toInteger'}"
+										color="{path: 'funilvendas>Cor'}"/>
+								</micro:data>
+							</micro:ComparisonMicroChart>
+							<ObjectNumber number="{funilvendas>QtdNVendeu}" unit="%" textAlign="End"/>
+						</HBox>
+					</VBox>
+				</CustomListItem>
+			</items>
+		</List>
+	</VBox>
+</core:FragmentDefinition>

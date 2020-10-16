@@ -1,0 +1,527 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470968/UI.xml?api=v2">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZHODOS_SRV/$metadata">
+		<edmx:Include Alias="ZHODOS_SRV" Namespace="ZHODOS_SRV"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="dashboard.annotations.annotations.ZHODOS_SRV">
+			<Annotations Target="ZHODOS_SRV.QtdCxFunc">
+				<Annotation Term="UI.DataPoint" Qualifier="qtdcaixas">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="{@i18n&gt;cardQtdCaixasTitle}"/>
+						<PropertyValue Property="Value" Path="QtdAval"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.PresentationVariant">
+					<Record Type="UI.PresentationVariantType"/>
+				</Annotation>
+				<Annotation Term="UI.SelectionVariant">
+					<Record Type="UI.SelectionVariantType">
+						<PropertyValue Property="SelectOptions">
+							<Collection>
+								<Record Type="UI.SelectOptionType">
+									<PropertyValue Property="PropertyName" PropertyPath="Condensed"/>
+									<PropertyValue Property="Ranges">
+										<Collection>
+											<Record Type="UI.SelectionRangeType">
+												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+												<PropertyValue Property="Low" String="X"/>
+											</Record>
+										</Collection>
+									</PropertyValue>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem" Qualifier="qtdcaixas">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Classificacao"/>
+						</Record>
+						<Record Type="UI.DataFieldForAnnotation">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#qtdcaixas"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;cardQtdCaixasTitle}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.IdaEstqFunc">
+				<Annotation Term="UI.SelectionVariant">
+					<Record Type="UI.SelectionVariantType">
+						<PropertyValue Property="SelectOptions">
+							<Collection>
+								<Record Type="UI.SelectOptionType">
+									<PropertyValue Property="PropertyName" PropertyPath="Condensed"/>
+									<PropertyValue Property="Ranges">
+										<Collection>
+											<Record Type="UI.SelectionRangeType">
+												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+												<PropertyValue Property="Low" String="X"/>
+											</Record>
+										</Collection>
+									</PropertyValue>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.DataPoint" Qualifier="qtdidasestoque">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="{@i18n&gt;cardEstoqueTitle}"/>
+						<PropertyValue Property="Value" Path="QtdAval"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem" Qualifier="estoque">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Classificacao"/>
+						</Record>
+						<Record Type="UI.DataFieldForAnnotation">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#qtdidasestoque"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.EncantFunc">
+				<Annotation Term="UI.SelectionVariant">
+					<Record Type="UI.SelectionVariantType"/>
+				</Annotation>
+				<Annotation Term="UI.DataPoint" Qualifier="encantamento">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="{@i18n&gt;cardEncantamentoTitle}"/>
+						<PropertyValue Property="Value" Path="CumpTot"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem" Qualifier="encantamento">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Area"/>
+						</Record>
+						<Record Type="UI.DataFieldForAnnotation">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#encantamento"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.RoteiroDonutFunc">
+				<Annotation Term="UI.SelectionVariant" Qualifier="pprocedimentos">
+					<Record Type="UI.SelectionVariantType">
+						<PropertyValue Property="SelectOptions">
+							<Collection>
+								<Record Type="UI.SelectOptionType">
+									<PropertyValue Property="PropertyName" PropertyPath="Tipo"/>
+									<PropertyValue Property="Ranges">
+										<Collection>
+											<Record Type="UI.SelectionRangeType">
+												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+												<PropertyValue Property="Low" String="P"/>
+											</Record>
+										</Collection>
+									</PropertyValue>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.SelectionVariant" Qualifier="pencantamento">
+					<Record Type="UI.SelectionVariantType">
+						<PropertyValue Property="SelectOptions">
+							<Collection>
+								<Record Type="UI.SelectOptionType">
+									<PropertyValue Property="PropertyName" PropertyPath="Tipo"/>
+									<PropertyValue Property="Ranges">
+										<Collection>
+											<Record Type="UI.SelectionRangeType">
+												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+												<PropertyValue Property="Low" String="E"/>
+											</Record>
+										</Collection>
+									</PropertyValue>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.DataPoint" Qualifier="pprocedimentos">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="{@i18n&gt;txtCumpProcedimento}"/>
+						<PropertyValue Property="Value" Path="Perc"/>
+						<PropertyValue Property="Description" String="{@i18n&gt;txtCumpProcedimento}"/>
+						<PropertyValue Property="Visualization" EnumMember="UI.VisualizationType/Progress"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.DataPoint" Qualifier="pencantamento">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="{@i18n&gt;txtCumpEncantamento}"/>
+						<PropertyValue Property="Value" Path="Perc"/>
+						<PropertyValue Property="Description" String="{@i18n&gt;txtCumpEncantamento}"/>
+						<PropertyValue Property="Visualization" EnumMember="UI.VisualizationType/Progress"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="pprocedimentos">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="Perc"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+									<PropertyValue Property="DataPoint" AnnotationPath="@UI.DataPoint#pprocedimentos"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="Legenda"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="pencantamento">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="Perc"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+									<PropertyValue Property="DataPoint" AnnotationPath="@UI.DataPoint#pencantamento"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="Legenda"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.Funil">
+				<Annotation Term="UI.DataPoint" Qualifier="funilnvendeu">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="{@i18n&gt;txtQtdNVendeu}"/>
+						<PropertyValue Property="Value" Path="QtdNVendeu"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.DataPoint" Qualifier="funilperc">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="{@i18n&gt;txtPercentual}"/>
+						<PropertyValue Property="Value" Path="Percentual"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.PresentationVariant">
+					<Record Type="UI.PresentationVariantType"/>
+				</Annotation>
+				<Annotation Term="UI.SelectionVariant">
+					<Record Type="UI.SelectionVariantType"/>
+				</Annotation>
+				<Annotation Term="UI.LineItem" Qualifier="funil">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Area"/>
+						</Record>
+						<Record Type="UI.DataFieldForAnnotation">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#funilperc"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;txtPercentual}"/>
+						</Record>
+						<Record Type="UI.DataFieldForAnnotation">
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#funilnvendeu"/>
+							<PropertyValue Property="Label" String="{@i18n&gt;txtQtdNVendeu}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.GlobalFilterNew">
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>Pais</PropertyPath>
+						<PropertyPath>Geral</PropertyPath>
+						<PropertyPath>Regional</PropertyPath>
+						<PropertyPath>CodLoja</PropertyPath>
+						<PropertyPath>CodVendedor</PropertyPath>
+						<PropertyPath>Ano</PropertyPath>
+						<PropertyPath>Mes</PropertyPath>
+						<PropertyPath>Semana</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.GlobalFilterNew/Pais">
+				<Annotation Term="Common.Label" String="{@i18n&gt;lblPais}"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="CountrySet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Pais"/>
+									<PropertyValue Property="ValueListProperty" String="Pais"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.GlobalFilterNew/Geral">
+				<Annotation Term="Common.Label" String="{@i18n&gt;lblGeral}"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="GeneralSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Pais"/>
+									<PropertyValue Property="ValueListProperty" String="Pais"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Geral"/>
+									<PropertyValue Property="ValueListProperty" String="Geral"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="DescGeral"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.GlobalFilterNew/Regional">
+				<Annotation Term="Common.Label" String="Regional"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="BranchSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Pais"/>
+									<PropertyValue Property="ValueListProperty" String="Pais"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Geral"/>
+									<PropertyValue Property="ValueListProperty" String="Geral"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Regional"/>
+									<PropertyValue Property="ValueListProperty" String="Regional"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="DescRegional"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.GlobalFilterNew/CodLoja">
+				<Annotation Term="Common.Label" String="{@i18n&gt;lblLoja}"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="StoreSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Pais"/>
+									<PropertyValue Property="ValueListProperty" String="Pais"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Geral"/>
+									<PropertyValue Property="ValueListProperty" String="Geral"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Regional"/>
+									<PropertyValue Property="ValueListProperty" String="Regional"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="CodLoja"/>
+									<PropertyValue Property="ValueListProperty" String="CodLoja"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.GlobalFilterNew/Ano">
+				<Annotation Term="Common.Label" String="{@i18n&gt;lblAno}"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="YearSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Pais"/>
+									<PropertyValue Property="ValueListProperty" String="Pais"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Geral"/>
+									<PropertyValue Property="ValueListProperty" String="Geral"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Regional"/>
+									<PropertyValue Property="ValueListProperty" String="Regional"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="CodLoja"/>
+									<PropertyValue Property="ValueListProperty" String="CodLoja"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Ano"/>
+									<PropertyValue Property="ValueListProperty" String="Ano"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.GlobalFilterNew/Mes">
+				<Annotation Term="Common.Label" String="{@i18n&gt;lblMes}"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="MonthSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Pais"/>
+									<PropertyValue Property="ValueListProperty" String="Pais"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Geral"/>
+									<PropertyValue Property="ValueListProperty" String="Geral"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Regional"/>
+									<PropertyValue Property="ValueListProperty" String="Regional"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="CodLoja"/>
+									<PropertyValue Property="ValueListProperty" String="CodLoja"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Ano"/>
+									<PropertyValue Property="ValueListProperty" String="Ano"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Mes"/>
+									<PropertyValue Property="ValueListProperty" String="Mes"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.GlobalFilterNew/Semana">
+				<Annotation Term="Common.Label" String="{@i18n&gt;lblSemana}"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="WeekSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Pais"/>
+									<PropertyValue Property="ValueListProperty" String="Pais"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Geral"/>
+									<PropertyValue Property="ValueListProperty" String="Geral"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Regional"/>
+									<PropertyValue Property="ValueListProperty" String="Regional"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="CodLoja"/>
+									<PropertyValue Property="ValueListProperty" String="CodLoja"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Ano"/>
+									<PropertyValue Property="ValueListProperty" String="Ano"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Mes"/>
+									<PropertyValue Property="ValueListProperty" String="Mes"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Semana"/>
+									<PropertyValue Property="ValueListProperty" String="Semana"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.GlobalFilterNew/CodVendedor">
+				<Annotation Term="Common.Label" String="{@i18n&gt;lblVendedor}"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="EmployeeSet"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Pais"/>
+									<PropertyValue Property="ValueListProperty" String="Pais"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Geral"/>
+									<PropertyValue Property="ValueListProperty" String="Geral"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Regional"/>
+									<PropertyValue Property="ValueListProperty" String="Regional"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="CodLoja"/>
+									<PropertyValue Property="ValueListProperty" String="CodLoja"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Ano"/>
+									<PropertyValue Property="ValueListProperty" String="Ano"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Mes"/>
+									<PropertyValue Property="ValueListProperty" String="Mes"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Semana"/>
+									<PropertyValue Property="ValueListProperty" String="Semana"/>
+								</Record>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="CodVendedor"/>
+									<PropertyValue Property="ValueListProperty" String="CodVendedor"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.RoteiroDonutFunc/Legenda">
+				<Annotation Term="Common.Label" String="{@i18n&gt;txtCumprimento}"/>
+			</Annotations>
+			<Annotations Target="ZHODOS_SRV.RoteiroDonutFunc/Perc">
+				<Annotation Term="Common.Label" String="{@i18n&gt;txtPercentual}"/>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

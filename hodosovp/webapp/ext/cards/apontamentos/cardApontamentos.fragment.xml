@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<VBox height="336px">
+		<VBox alignItems="Center" alignContent="Center" justifyContent="Center" binding="{apontamentos>/}" class="sapUiSmallMargin" height="100%">
+			<NumericContent id="ovpNumContentApont" value="{apontamentos>quantidade}" valueColor="Good" withMargin="false" truncateValueTo="6"
+				class="sapUiSmallMarginEnd ovpCustomNumericContent" press="onApontamentoPress"/>
+			<Title id="ovpTitleApont" titleStyle="H4" text="{path: 'apontamentos>quantidade', formatter: '.formatTextApontamentos'}"/>
+		</VBox>
+		<Text text="{i18n>txtAtendApontadosLong}" class="sapUiSmallMargin"/>
+	</VBox>
+</core:FragmentDefinition>

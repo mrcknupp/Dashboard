@@ -1,0 +1,234 @@
+{
+	"_version": "1.7.0",
+	"start_url": "start.html",
+	"sap.app": {
+		"id": "hodos.hodosovp",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{app_title}}",
+		"description": "{{app_description}}",
+		"dataSources": {
+			"Hodos": {
+				"uri": "/sap/opu/odata/sap/ZHODOS_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/Hodos/metadata.xml",
+					"annotations": [
+						"annotation1"
+					]
+				}
+			},
+			"ZHODOS_SRV": {
+				"uri": "/sap/opu/odata/sap/ZHODOS_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"annotation1": {
+				"type": "ODataAnnotation",
+				"uri": "annotations/annotations.xml",
+				"settings": {
+					"localUri": "annotations/annotations.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "${sap.ui5.dist.version}",
+			"libs": {
+				"sap.m": {},
+				"sap.ovp": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"resourceRoots": {},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"@i18n": {
+				"preload": true,
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"Hodos": {
+				"dataSource": "Hodos",
+				"settings": {
+					"defaultCountMode": "Inline"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZHODOS_SRV",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.controllerExtensions": {
+					"sap.ovp.app.Main": {
+						"controllerName": "hodos.hodosovp.ext.customMain"
+					}
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	},
+	"sap.ovp": {
+		"globalFilterModel": "Hodos",
+		"globalFilterEntityType": "GlobalFilterNew",
+		"containerLayout": "fixed",
+		"enableLiveFilter": true,
+		"considerAnalyticalParameters": true,
+		"smartVariantRequired": true,
+		"cards": {
+			"card00_Apontamentos": {
+				"template": "hodos.hodosovp.ext.cards.apontamentos",
+				"model": "Hodos",
+				"settings": {
+					"title": "{{cardApontamentosTitle}}",
+					"entitySet": "StoreRateFuncSet"
+				}
+			},
+			"card01_TempoMedio": {
+				"template": "hodos.hodosovp.ext.cards.tempomedio",
+				"model": "Hodos",
+				"settings": {
+					"title": "{{cardTempoMedioTitle}}",
+					"entitySet": "AverageTimeFuncSet"
+				}
+			},
+			"card02_QtdCaixas": {
+				"template": "hodos.hodosovp.ext.cards.qtdcx",
+				"model": "Hodos",
+				"settings": {
+					"title": "{{cardQtdCaixasTitle}}",
+					"entitySet": "QtdCxFuncSet"
+				}
+			},
+			"card03_Estoque": {
+				"template": "hodos.hodosovp.ext.cards.estoque",
+				"model": "Hodos",
+				"settings": {
+					"title": "{{cardEstoqueTitle}}",
+					"entitySet": "IdaEstqFuncSet"
+				}
+			},
+			"card04_Roteiro": {
+				"template": "hodos.hodosovp.ext.cards.roteiro",
+				"model": "Hodos",
+				"settings": {
+					"title": "{{cardRoteiroTitle}}",
+					"entitySet": "RoteiroFuncSet"
+				}
+			},
+			"card05_PProcedimento": {
+				"model": "Hodos",
+				"template": "hodos.hodosovp.ext.cards.donut",
+				"settings": {
+					"title": "{{cardPProcedimentoTitle}}",
+					"entitySet": "RoteiroDonutFuncSet",
+					"selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#pprocedimentos",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#pprocedimentos",
+					"presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
+				}
+			},
+			"card06_PEncantamento": {
+				"model": "Hodos",
+				"template": "hodos.hodosovp.ext.cards.donut",
+				"settings": {
+					"title": "{{cardPEncantamentoTitle}}",
+					"entitySet": "RoteiroDonutFuncSet",
+					"selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#pencantamento",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#pencantamento",
+					"presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant",
+					"idenfiticationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#pencantamento"
+				}
+			},
+			"card07_Encantamento": {
+				"template": "hodos.hodosovp.ext.cards.encantamento",
+				"model": "Hodos",
+				"settings": {
+					"title": "{{cardEncantamentoTitle}}",
+					"entitySet": "EncantCaracFuncSet"
+				}
+			},
+			"card08_Conversao": {
+				"template": "hodos.hodosovp.ext.cards.conversao",
+				"model": "Hodos",
+				"settings": {
+					"title": "{{cardConversaoTitle}}",
+					"entitySet": "ConversaoFuncSet"
+				}
+			},
+			"card09_FunilVendas": {
+				"template": "hodos.hodosovp.ext.cards.funilvendas",
+				"model": "Hodos",
+				"settings": {
+					"title": "{{cardFunilVendasTitle}}",
+					"entitySet": "FunilFuncSet"
+				}
+			},
+			"card10_FMagica": {
+				"template": "hodos.hodosovp.ext.cards.fmagica",
+				"model": "Hodos",
+				"settings": {
+					"title": "{{cardFMagicaTitle}}"
+				}
+			},
+			"card11_FCA": {
+				"template": "hodos.hodosovp.ext.cards.fca",
+				"model": "Hodos",
+				"settings": {
+					"title": "{{cardFCATitle}}"
+				}
+			}
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zsd_hodos_ovp/webapp",
+		"_version": "1.1.0"
+	}
+}
