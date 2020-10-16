@@ -1,0 +1,93 @@
+<mvc:View controllerName="hodos.hodostempomedio.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:c="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:semantic="sap.m.semantic"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data">
+	<semantic:DetailPage id="mainPageTMedio" title="{i18n>titleVisaoGeral}" busy="{screenView>/busy}" showFooter="false">
+		<IconTabBar upperCase="true" expandable="false" applyContentPadding="true" stretchContentHeight="false"
+			class="sapUiResponsiveContentPadding">
+			<items>
+				<IconTabFilter text="{i18n>txtDadosSelecao}"/>
+			</items>
+			<content>
+				<FlexBox id="fbFilter" alignItems="Center" class="ResponsiveGridLayout" alignContent="SpaceBetween" backgroundDesign="Solid">
+					<items>
+						<Label text="{i18n>txtPais}:" design="Bold" class="sapUiSmallMarginBegin"/>
+						<Text text="{filter>/Pais}" class="sapUiSmallMarginBegin"/>
+						<Label text="{i18n>txtGeral}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Geral} !== '' }"/>
+						<Text text="{filter>/Geral}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Geral} !== ''}"/>
+						<Label text="{i18n>txtRegional}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Regional} !== ''}"/>
+						<Text text="{filter>/Regional}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Regional} !== ''}"/>
+						<Label text="{i18n>txtCodLoja}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodLoja} !== ''}"/>
+						<Text text="{filter>/CodLoja}" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodLoja} !== ''}"/>
+						<Label text="{i18n>txtCodVendedor}" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodVendedor} !== ''}"/>
+						<Text text="{filter>CodVendedor}" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodVendedor} !== ''}"/>
+						<Label text="{i18n>txtAno}:" design="Bold" class="sapUiSmallMarginBegin"/>
+						<Text text="{filter>/Ano}" class="sapUiSmallMarginBegin"/>
+						<Label text="{i18n>txtMes}:" design="Bold" class="sapUiSmallMarginBegin"/>
+						<Text text="{filter>/Mes}" class="sapUiSmallMarginBegin"/>
+						<Label text="{i18n>txtSemana}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Semana} !== ''}"/>
+						<Text text="{filter>/Semana}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Semana} !== ''}"/>
+					</items>
+				</FlexBox>
+			</content>
+			<layoutData>
+				<FlexItemData growFactor="0.3" baseSize="0%"/>
+			</layoutData>
+		</IconTabBar>
+		<semantic:content>
+			<VBox class="sapUiSmallMargin">
+				<MessageStrip class="sapUiSmallMarginBottom" text="{i18n>txtTempoMedio}" showIcon="true"/>
+				<l:BlockLayout id="BlockLayout">
+					<l:BlockLayoutRow>
+						<l:BlockLayoutCell>
+							<VBox alignItems="Center">
+								<items>
+									<Text text="{generalData>/SoldTime}" class="historygreen"/>
+									<Text text="{i18n>txtSold}" class="historygreentext"/>
+									<c:Icon src="sap-icon://history" size="8rem" color="#2B7D2B"></c:Icon>
+								</items>
+							</VBox>
+						</l:BlockLayoutCell>
+						<l:BlockLayoutCell>
+							<VBox alignItems="Center">
+								<items>
+									<Text text="{generalData>/NSoldTime}" class="historyred"/>
+									<Text text="{i18n>txtNSold}" class="historyredtext"/>
+									<c:Icon src="sap-icon://history" size="8rem" color="#BB0000"></c:Icon>
+									<Link text="{i18n>txtNSoldLink}" class="historyredtextlink" press="onLinkPress"/>
+								</items>
+							</VBox>
+						</l:BlockLayoutCell>
+						<l:BlockLayoutCell>
+							<VBox alignItems="Center">
+								<items>
+									<Text text="{generalData>/TotalTime}" class="historyblack"/>
+									<Text text="{i18n>txtTotal}" class="historyblacktext"/>
+									<c:Icon src="sap-icon://history" size="8rem" color="#000000"></c:Icon>
+								</items>
+							</VBox>
+						</l:BlockLayoutCell>
+					</l:BlockLayoutRow>
+				</l:BlockLayout>
+			</VBox>
+			<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" height='100%' width="100%" vizType='column'
+				renderComplete="onRenderComplete">
+				<viz:dataset>
+					<viz.data:FlattenedDataset data="{chartData>/data}">
+						<viz.data:dimensions>
+							<viz.data:DimensionDefinition name="Employee" value="{chartData>Employee}"/>
+						</viz.data:dimensions>
+						<viz.data:measures>
+							<viz.data:MeasureDefinition name="Vendeu Tempo Médio" value="{chartData>Sold}"/>
+							<viz.data:MeasureDefinition name="Não Vendeu Tempo Médio" value="{chartData>NSold}"/>
+						</viz.data:measures>
+					</viz.data:FlattenedDataset>
+				</viz:dataset>
+				<viz:feeds>
+					<viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="Employee"/>
+					<viz.feeds:FeedItem id='valueAxisSoldMedium' uid="valueAxis" type="Measure" values="Vendeu Tempo Médio"/>
+					<viz.feeds:FeedItem id='valueAxisNotSoldMedium' uid="valueAxis" type="Measure" values="Não Vendeu Tempo Médio"/>
+				</viz:feeds>
+			</viz:VizFrame>
+		</semantic:content>
+	</semantic:DetailPage>
+</mvc:View>
