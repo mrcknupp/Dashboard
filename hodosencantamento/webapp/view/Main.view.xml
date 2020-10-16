@@ -1,0 +1,170 @@
+<mvc:View controllerName="hodos.hodosencant.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:c="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:semantic="sap.m.semantic"
+	xmlns:grid="sap.ui.layout.cssgrid" xmlns:micro="sap.suite.ui.microchart">
+	<App id="idAppControl">
+		<pages>
+			<semantic:DetailPage id="mainPageEncant" title="{i18n>title}" busy="{screenView>/busy}" showFooter="false">
+				<IconTabBar upperCase="true" expandable="false" applyContentPadding="true" stretchContentHeight="false"
+					class="sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter text="{i18n>txtDadosSelecao}"/>
+					</items>
+					<content>
+						<FlexBox id="fbFilter" alignItems="Center" justifyContent="Begin" class="ResponsiveGridLayout" alignContent="SpaceBetween"
+							backgroundDesign="Solid">
+							<items>
+								<Label text="{i18n>txtPais}:" design="Bold" class="sapUiSmallMarginBegin"/>
+								<Text text="{filter>/Pais}" class="sapUiSmallMarginBegin"/>
+								<Label text="{i18n>txtGeral}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Geral} !== '' }"/>
+								<Text text="{filter>/Geral}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Geral} !== ''}"/>
+								<Label text="{i18n>txtRegional}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Regional} !== ''}"/>
+								<Text text="{filter>/Regional}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Regional} !== ''}"/>
+								<Label text="{i18n>txtCodLoja}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodLoja} !== ''}"/>
+								<Text text="{filter>/CodLoja}" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodLoja} !== ''}"/>
+								<Label text="{i18n>txtCodVendedor}" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodVendedor} !== ''}"/>
+								<Text text="{filter>CodVendedor}" class="sapUiSmallMarginBegin" visible="{= ${filter>/CodVendedor} !== ''}"/>
+								<Label text="{i18n>txtAno}:" design="Bold" class="sapUiSmallMarginBegin"/>
+								<Text text="{filter>/Ano}" class="sapUiSmallMarginBegin"/>
+								<Label text="{i18n>txtMes}:" design="Bold" class="sapUiSmallMarginBegin"/>
+								<Text text="{filter>/Mes}" class="sapUiSmallMarginBegin"/>
+								<Label text="{i18n>txtSemana}:" design="Bold" class="sapUiSmallMarginBegin" visible="{= ${filter>/Semana} !== ''}"/>
+								<Text text="{filter>/Semana}" class="sapUiSmallMarginBegin" visible="{= ${filter>/Semana} !== ''}"/>
+							</items>
+						</FlexBox>
+					</content>
+					<layoutData>
+						<FlexItemData growFactor="0.3" baseSize="0%"/>
+					</layoutData>
+				</IconTabBar>
+				<semantic:content>
+					<VBox class="sapUiSmallMargin">
+						<MessageStrip class="sapUiSmallMarginBottom" text="{i18n>txtAnalise}" showIcon="true"/>
+						<grid:CSSGrid id="grid10" class="sapUiMediumMarginTop" gridAutoFlow="Column" gridTemplateColumns="462px 462px"
+							gridTemplateRows="15px 500px 15px 500px" gridColumnGap="5rem" gridGap="0.3rem" width="100%">
+							<grid:items>
+								<!-- GERAL -->
+								<VBox width="100%" height="100%" alignContent="Center" alignItems="Center">
+									<!--<Title text="{i18n>ttlGeral}" class="titleGrafico"/>-->
+								</VBox>
+								<VBox width="100%" height="100%">
+									<layoutData>
+										<grid:GridItemLayoutData gridRow="span 1"/>
+									</layoutData>
+									<List id="listGeral" class="listCardType encTitGeral sapUiSmallMarginTop" width="100%" items="{geral>/}" headerText="{i18n>ttlGeral}">
+										<items>
+											<CustomListItem id="listGeralItem" type="Active" class="sapOvpBarList sapOvpBarCondensedList">
+												<f:SimpleForm singleContainerFullSize="false" columnsL="5" columnsM="1" columnsXL="5" maxContainerCols="5" layout="ResponsiveGridLayout"
+													width="100%">
+													<f:content>
+														<VBox>
+															<Text class="sapOvpExtendedBarListFirstDataField sapOvpOverflowEllipsisDataField" text="{geral>Area}"/>
+															<micro:ComparisonMicroChart height="auto" width="auto" maxValue="100">
+																<micro:data>
+																	<micro:ComparisonMicroChartData displayValue=" " value="{= parseInt(${geral>CumpTot})}" color="{geral>Cor}"/>
+																</micro:data>
+															</micro:ComparisonMicroChart>
+														</VBox>
+														<Text text="{geral>CumpTot}%" textAlign="End" class="sapMObjectNumber sapMObjectNumberEmph sapMObjectNumberStatusNone"/>
+													</f:content>
+												</f:SimpleForm>
+											</CustomListItem>
+										</items>
+									</List>
+								</VBox>
+								<!-- GERAL -->
+								<VBox width="100%" height="100%" alignContent="Center" alignItems="Center">
+									<!--<Title text="{i18n>ttlQNVendeu}" class="titleGraficoNVendeu"/>-->
+								</VBox>
+								<VBox width="100%" height="100%">
+									<layoutData>
+										<grid:GridItemLayoutData gridRow="span 1"/>
+									</layoutData>
+									<List id="listNVendeu" class="listCardType encTitNVendeu sapUiLargeMarginTop" width="100%" items="{nvendeu>/}"
+										headerText="{i18n>ttlQNVendeu}">
+										<items>
+											<CustomListItem id="listNVendeuItem" type="Active" class="sapOvpBarList sapOvpBarCondensedList">
+												<f:SimpleForm singleContainerFullSize="false" columnsL="5" columnsM="1" columnsXL="5" maxContainerCols="5" layout="ResponsiveGridLayout"
+													width="100%">
+													<f:content>
+														<VBox>
+															<Text class="sapOvpExtendedBarListFirstDataField sapOvpOverflowEllipsisDataField" text="{nvendeu>Area}"/>
+															<micro:ComparisonMicroChart height="auto" width="auto" maxValue="100">
+																<micro:data>
+																	<micro:ComparisonMicroChartData displayValue=" " value="{= parseInt(${nvendeu>CumpNVendeu})}" color="{nvendeu>Cor}"/>
+																</micro:data>
+															</micro:ComparisonMicroChart>
+														</VBox>
+														<Text text="{nvendeu>CumpNVendeu}%" textAlign="End" class="sapMObjectNumber sapMObjectNumberEmph sapMObjectNumberStatusNone"/>
+													</f:content>
+												</f:SimpleForm>
+											</CustomListItem>
+										</items>
+									</List>
+								</VBox>
+								<!-- GERAL -->
+								<VBox width="100%" height="100%" alignContent="Center" alignItems="Center">
+									<!--<Title text="{i18n>ttlQVendeu}" class="titleGraficoVendeu"/>-->
+								</VBox>
+								<VBox width="100%" height="100%">
+									<layoutData>
+										<grid:GridItemLayoutData gridRow="span 1"/>
+									</layoutData>
+									<List id="listVendeu" class="listCardType encTitVendeu sapUiSmallMarginTop" width="100%" items="{vendeu>/}" headerText="{i18n>ttlQVendeu}">
+										<items>
+											<CustomListItem id="listVendeuItem" type="Active" class="sapOvpBarList sapOvpBarCondensedList">
+												<f:SimpleForm singleContainerFullSize="false" columnsL="5" columnsM="1" columnsXL="5" maxContainerCols="5" layout="ResponsiveGridLayout"
+													width="100%">
+													<f:content>
+														<VBox>
+															<Text class="sapOvpExtendedBarListFirstDataField sapOvpOverflowEllipsisDataField" text="{vendeu>Area}"/>
+															<micro:ComparisonMicroChart height="auto" width="auto" maxValue="100">
+																<micro:data>
+																	<micro:ComparisonMicroChartData displayValue=" " value="{= parseInt(${vendeu>CumpVendeu})}" color="{vendeu>Cor}"/>
+																</micro:data>
+															</micro:ComparisonMicroChart>
+														</VBox>
+														<Text text="{vendeu>CumpVendeu}%" textAlign="End" class="sapMObjectNumber sapMObjectNumberEmph sapMObjectNumberStatusNone"/>
+													</f:content>
+												</f:SimpleForm>
+											</CustomListItem>
+										</items>
+									</List>
+								</VBox>
+								<!-- GERAL -->
+								<VBox width="100%" height="100%" alignContent="Center" alignItems="Center">
+									<!--<Title text="{i18n>ttlQComport}" class="titleGrafico"/>-->
+								</VBox>
+								<VBox width="100%" height="100%">
+									<layoutData>
+										<grid:GridItemLayoutData gridRow="span 1"/>
+									</layoutData>
+									<List id="listCaracteristica" class="listCardType encTitVendeu sapUiLargeMarginTop" width="100%" items="{carac>/}"
+										headerText="{i18n>ttlQComport}">
+										<items>
+											<CustomListItem id="listCaracteristicaItem" type="Active" class="sapOvpBarList sapOvpBarCondensedList">
+												<f:SimpleForm singleContainerFullSize="false" columnsL="5" columnsM="1" columnsXL="5" maxContainerCols="5" layout="ResponsiveGridLayout"
+													width="100%">
+													<f:content>
+														<VBox>
+															<Text class="sapOvpExtendedBarListFirstDataField sapOvpOverflowEllipsisDataField" text="{carac>Caracteristica}"/>
+															<micro:ComparisonMicroChart height="auto" width="auto" maxValue="100">
+																<micro:data>
+																	<micro:ComparisonMicroChartData displayValue=" " value="{= parseInt(${carac>CumpTot})}" color="{carac>Cor}"/>
+																</micro:data>
+															</micro:ComparisonMicroChart>
+														</VBox>
+														<Text text="{= parseInt(${carac>CumpTot})}%" textAlign="End" class="sapMObjectNumber sapMObjectNumberEmph sapMObjectNumberStatusNone"/>
+													</f:content>
+												</f:SimpleForm>
+											</CustomListItem>
+										</items>
+									</List>
+								</VBox>
+							</grid:items>
+						</grid:CSSGrid>
+					</VBox>
+				</semantic:content>
+			</semantic:DetailPage>
+		</pages>
+	</App>
+</mvc:View>
